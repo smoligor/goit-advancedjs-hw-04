@@ -1,7 +1,5 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import { getImagesByQuery } from './pixabay-api.js';
 import {
     createGallery,
@@ -15,7 +13,6 @@ import {
 const searchForm = document.querySelector('#search-form');
 const loadMoreBtn = document.querySelector('#load-more');
 
-let lightbox = null;
 let query = '';
 let page = 1;
 const perPage = 15;
@@ -49,7 +46,6 @@ searchForm.addEventListener('submit', async (event) => {
             });
         } else {
             createGallery(data.hits);
-            refreshLightbox();
 
             if (data.totalHits > perPage) {
                 showLoadMoreButton();
@@ -70,7 +66,6 @@ loadMoreBtn.addEventListener('click', async () => {
     try {
         const data = await getImagesByQuery(query, page);
         createGallery(data.hits);
-        refreshLightbox();
         smoothScroll();
 
         const totalPages = Math.ceil(data.totalHits / perPage);
@@ -88,17 +83,6 @@ loadMoreBtn.addEventListener('click', async () => {
         hideLoader();
     }
 });
-
-function refreshLightbox() {
-    if (lightbox) {
-        lightbox.refresh();
-    } else {
-        lightbox = new SimpleLightbox('.gallery a', {
-            captionsData: 'alt',
-            captionDelay: 250,
-        });
-    }
-}
 
 function handleSearchError() {
     iziToast.error({
