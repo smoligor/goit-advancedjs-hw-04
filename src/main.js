@@ -48,7 +48,12 @@ searchForm.addEventListener('submit', async event => {
     } else {
       createGallery(data.hits);
 
-      if (data.totalHits > perPage) {
+      if (data.totalHits <= perPage) {
+        iziToast.info({
+          message: "We're sorry, but you've reached the end of search results.",
+          position: 'topRight',
+        });
+      } else {
         showLoadMoreButton();
       }
     }
