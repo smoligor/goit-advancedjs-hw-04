@@ -10,8 +10,8 @@ import {
   hideLoadMoreButton,
 } from './js/render-functions.js';
 
-const searchForm = document.querySelector('#search-form');
-const loadMoreBtn = document.querySelector('#load-more');
+const searchForm = document.querySelector('.form');
+const loadMoreBtn = document.querySelector('.load-more');
 
 let query = '';
 let page = 1;
@@ -19,7 +19,7 @@ const perPage = 15;
 
 searchForm.addEventListener('submit', async event => {
   event.preventDefault();
-  query = event.currentTarget.elements.query.value.trim();
+  query = event.currentTarget.elements['search-text'].value.trim();
 
   if (!query) {
     iziToast.warning({

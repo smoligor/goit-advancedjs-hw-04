@@ -6,18 +6,18 @@ body {
   align-items: center;
 }
 
-.search-form {
+.form {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.search-form input {
+.form input {
   padding: 8px;
   width: 300px;
 }
 
-.search-form button {
+.form button {
   padding: 8px 16px;
   background-color: #007bff;
   color: white;
@@ -60,8 +60,25 @@ body {
   text-align: center;
 }
 
+.loader,
+.load-more {
+  display: none;
+}
+
+.loader.is-visible,
+.load-more.is-visible {
+  display: block;
+}
+
 .loader {
-  margin: 20px 0;
+  margin: 20px auto;
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
 .load-more {
@@ -72,6 +89,12 @@ body {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+@keyframes rotation {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .load-more:hover {
