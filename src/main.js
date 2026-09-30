@@ -71,6 +71,15 @@ loadMoreBtn.addEventListener('click', async () => {
 
   try {
     const data = await getImagesByQuery(query, page);
+
+    if (data.hits.length === 0) {
+      iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
+      return;
+    }
+
     createGallery(data.hits);
     smoothScroll();
 
