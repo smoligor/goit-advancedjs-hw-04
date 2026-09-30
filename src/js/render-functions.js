@@ -8,9 +8,17 @@ const loadMoreBtn = document.querySelector('#load-more');
 let lightbox = null;
 
 export function createGallery(images) {
-    const markup = images
-        .map(
-            ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
+  const markup = images
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => `
         <li class="gallery__item">
             <a class="gallery__link" href="${largeImageURL}">
                 <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
@@ -23,37 +31,37 @@ export function createGallery(images) {
             </div>
         </li>
     `
-        )
-        .join('');
+    )
+    .join('');
 
-    gallery.insertAdjacentHTML('beforeend', markup);
+  gallery.insertAdjacentHTML('beforeend', markup);
 
-    if (lightbox) {
-        lightbox.refresh();
-    } else {
-        lightbox = new SimpleLightbox('.gallery a', {
-            captionsData: 'alt',
-            captionDelay: 250,
-        });
-    }
+  if (lightbox) {
+    lightbox.refresh();
+  } else {
+    lightbox = new SimpleLightbox('.gallery a', {
+      captionsData: 'alt',
+      captionDelay: 250,
+    });
+  }
 }
 
 export function clearGallery() {
-    gallery.innerHTML = '';
+  gallery.innerHTML = '';
 }
 
 export function showLoader() {
-    loader.style.display = 'block';
+  loader.style.display = 'block';
 }
 
 export function hideLoader() {
-    loader.style.display = 'none';
+  loader.style.display = 'none';
 }
 
 export function showLoadMoreButton() {
-    loadMoreBtn.style.display = 'block';
+  loadMoreBtn.style.display = 'block';
 }
 
 export function hideLoadMoreButton() {
-    loadMoreBtn.style.display = 'none';
+  loadMoreBtn.style.display = 'none';
 }
